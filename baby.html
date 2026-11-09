@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Monthsary, My Love!</title>
+  <style>
+    :root {
+      --ink: #f4eaf0;
+      --muted: #b9a6b3;
+      --rose: #fb718f;
+      --rose-dark: #f43f70;
+      --paper: #211b29;
+      --line: #3a2d3d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px 18px;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 15% 5%, #64294366 0, transparent 32%),
+        radial-gradient(ellipse at 90% 28%, #31285866 0, transparent 30%),
+        #100e15;
+      font-family: "Segoe UI", Arial, sans-serif;
+      text-align: center;
+    }
+
+    #welcome {
+      position: fixed;
+      z-index: 2;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: #100e15f5;
+      animation: fade-in 700ms ease both;
+    }
+
+    .welcome-card {
+      width: min(100%, 440px);
+      padding: 16px 16px 24px;
+      border: 1px solid #ffffff20;
+      border-radius: 22px;
+      background: #211b29;
+      box-shadow: 0 24px 80px #00000080;
+      animation: rise-in 800ms 150ms ease both;
+    }
+
+    .welcome-photo {
+      display: block;
+      width: 100%;
+      height: 290px;
+      margin-bottom: 22px;
+      border-radius: 14px;
+      object-fit: cover;
+      animation: photo-glow 3s ease-in-out infinite alternate;
+    }
+
+    .welcome-card h2 {
+      margin-bottom: 8px;
+    }
+
+    .welcome-card p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    #welcome.hide {
+      animation: fade-out 450ms ease forwards;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fade-out {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    @keyframes rise-in {
+      from { opacity: 0; transform: translateY(24px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes photo-glow {
+      from { box-shadow: 0 0 16px #fb718f18; }
+      to { box-shadow: 0 0 32px #fb718f55; }
+    }
+
+    main {
+      width: min(100%, 820px);
+      margin: auto;
+    }
+
+    header {
+      padding: 56px 20px 38px;
+    }
+
+    .heart {
+      display: inline-grid;
+      width: 58px;
+      height: 58px;
+      place-items: center;
+      border: 1px solid #ffffff20;
+      border-radius: 50%;
+      color: var(--rose);
+      background: #ffffff0a;
+      font-size: 1.8rem;
+      box-shadow: 0 8px 32px #00000040, inset 0 1px #ffffff12;
+    }
+
+    h1 {
+      margin: 20px 0 10px;
+      color: #fff3f7;
+      font-size: clamp(2.7rem, 8vw, 5rem);
+      font-weight: 650;
+      letter-spacing: -0.04em;
+    }
+
+    header p {
+      max-width: 470px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .card {
+      margin: 20px 0;
+      padding: 34px 30px;
+      border: 1px solid #ffffff12;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #211b29ee, #191620ee);
+      box-shadow: 0 18px 55px #00000035, inset 0 1px #ffffff08;
+      animation: rise-in 700ms both;
+    }
+
+    .card:nth-of-type(2) {
+      animation-delay: 120ms;
+    }
+
+    .card:nth-of-type(3) {
+      animation-delay: 240ms;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      color: #ffd2df;
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    #time-together {
+      margin: 0;
+      color: #ff91ac;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.8;
+    }
+
+    #reason-text {
+      min-height: 54px;
+      margin: 20px 0;
+      color: #d3c3cf;
+      font-size: 1.12rem;
+      font-style: italic;
+      line-height: 1.8;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: 0;
+      border-radius: 30px;
+      color: #240e19;
+      background: linear-gradient(135deg, #ff91ac, #fb5e86);
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+      box-shadow: 0 6px 20px #fb5e8633;
+    }
+
+    button:hover,
+    button:focus-visible {
+      background: linear-gradient(135deg, #ffabc0, #ff7195);
+      transform: translateY(-2px);
+      box-shadow: 0 9px 24px #fb5e8644;
+    }
+
+    button:focus-visible {
+      outline: 3px solid #ff91ac;
+      outline-offset: 3px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1.15fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      padding: 6px;
+      border: 1px solid #ffffff22;
+      border-radius: 16px;
+      background: var(--paper);
+      box-shadow: 0 12px 30px #00000050;
+      object-fit: cover;
+      transition: transform 350ms ease, box-shadow 350ms ease;
+      animation: rise-in 700ms both;
+    }
+
+    .gallery img:nth-child(1) {
+      animation-delay: 120ms;
+    }
+
+    .gallery img:nth-child(2) {
+      animation-delay: 220ms;
+    }
+
+    .gallery img:nth-child(3) {
+      animation-delay: 320ms;
+    }
+
+    .gallery img:nth-child(2) {
+      transform: translateY(12px);
+    }
+
+    .gallery img:hover {
+      transform: translateY(-7px) rotate(-1deg) scale(1.02);
+      box-shadow: 0 16px 36px #fb718f30;
+    }
+
+    .gallery img:nth-child(2):hover {
+      transform: translateY(6px) rotate(1deg);
+    }
+
+    .answer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    #no-btn {
+      border: 1px solid #ffffff20;
+      color: #e7dce5;
+      background: #ffffff0a;
+      box-shadow: none;
+    }
+
+    #love-message {
+      min-height: 26px;
+      margin: 20px 0 0;
+      color: #ff91ac;
+      font-weight: 600;
+    }
+
+    footer {
+      padding: 26px 0 12px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: 0.03em;
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 12px 14px;
+      }
+
+      header {
+        padding: 38px 10px 24px;
+      }
+
+      .card {
+        padding: 28px 20px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .gallery img {
+        height: 160px;
+      }
+
+      .gallery img:nth-child(2) {
+        transform: none;
+      }
+
+      .gallery img:last-child {
+        grid-column: 1 / -1;
+        width: 70%;
+        height: 190px;
+        justify-self: center;
+      }
+
+      .welcome-photo {
+        height: 230px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      button,
+      .gallery img,
+      #welcome,
+      .welcome-card,
+      .welcome-photo,
+      .card {
+        transition: none;
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section id="welcome" aria-label="Monthsary welcome">
+    <div class="welcome-card">
+      <img class="welcome-photo"
+        src="monthsary-photo.jpg"
+        alt="Us celebrating our 2026 monthsary">
+      <h2>A little surprise for you</h2>
+      <p>Every moment with you is my favorite. Happy monthsary! 💗</p>
+      <button type="button" onclick="openPage()">Open your surprise</button>
+    </div>
+  </section>
+
+  <main>
+    <header>
+      <div class="heart" aria-hidden="true">♥</div>
+      <h1>Happy Monthsary!</h1>
+      <p>Another month of loving you, and a lifetime to go.</p>
+    </header>
+
+    <section class="card">
+      <h2>Our Time Together</h2>
+      <p id="time-together">Counting every moment...</p>
+    </section>
+
+    <section class="card">
+      <h2>A Little Reminder</h2>
+      <p id="reason-text">You make every day a little brighter. 💗</p>
+      <button type="button" onclick="nextReason()">Read another reason</button>
+    </section>
+
+    <section class="gallery" aria-label="Our memories">
+      <img src="monthsary-photo.jpg" alt="Us celebrating our 2026 monthsary">
+      <img src="school-memory.jpg" alt="Us together at a school celebration">
+      <img src="monthsary-photo.jpg" alt="A favorite monthsary memory together">
+    </section>
+
+    <section class="card">
+      <h2>Do you love me as much as I love you? 🥰</h2>
+      <div class="answer">
+        <button type="button" onclick="sayYes()">Yes! ❤️</button>
+        <button type="button" id="no-btn" onclick="sayNo()">No 🙈</button>
+      </div>
+      <p id="love-message" aria-live="polite"></p>
+    </section>
+
+    <footer>Made with all my heart, just for you. 💌</footer>
+  </main>
+
+  <script>
+    // Change this date to your anniversary: year, month (0 = January), day.
+    const startDate = new Date(2025, 9, 15);
+
+    function updateCounter() {
+      const now = new Date();
+      const days = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+      const months = (now.getFullYear() - startDate.getFullYear()) * 12
+        + now.getMonth() - startDate.getMonth()
+        - (now.getDate() < startDate.getDate() ? 1 : 0);
+
+      document.getElementById("time-together").textContent =
+        months + " months and " + days + " days together 💖";
+    }
+
+    const reasons = [
+      "Your smile brightens even my hardest days.",
+      "You make ordinary moments feel special.",
+      "Thank you for always listening and caring.",
+      "I love laughing and making memories with you.",
+      "You make my world a happier place."
+    ];
+    let reasonIndex = -1;
+
+    function nextReason() {
+      reasonIndex = (reasonIndex + 1) % reasons.length;
+      document.getElementById("reason-text").textContent = reasons[reasonIndex];
+    }
+
+    function sayYes() {
+      document.getElementById("love-message").textContent =
+        "Yay! I love you so much. Happy monthsary! ❤️";
+    }
+
+    function sayNo() {
+      document.getElementById("love-message").textContent =
+        "Aww, I'll keep trying to make you smile! 🙈";
+    }
+
+    function openPage() {
+      document.getElementById("welcome").classList.add("hide");
+    }
+
+    updateCounter();
+    setInterval(updateCounter, 60000);
+  </script>
+</body>
+</html>
